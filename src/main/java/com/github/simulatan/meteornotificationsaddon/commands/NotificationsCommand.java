@@ -13,8 +13,8 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import meteordevelopment.meteorclient.commands.Command;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
-import net.minecraft.command.CommandSource;
-
+import net.minecraft.client.multiplayer.ClientSuggestionProvider;
+import net.minecraft.commands.SharedSuggestionProvider;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,7 +31,7 @@ public class NotificationsCommand extends Command {
 	}
 
 	@Override
-	public void build(LiteralArgumentBuilder<CommandSource> builder) {
+	public void build(LiteralArgumentBuilder<ClientSuggestionProvider> builder) {
 		builder.then(argument("mode", new NotificationsArgumentType()).executes(context -> {
 			NotificationCommandType arg = context.getArgument("mode", NotificationCommandType.class);
 			if (arg == NotificationCommandType.SEND) {
@@ -66,7 +66,7 @@ public class NotificationsCommand extends Command {
 
 		@Override
 		public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-			return CommandSource.suggestMatching(Arrays.stream(NotificationCommandType.values()).map(NotificationCommandType::name), builder);
+			return SharedSuggestionProvider.suggest(Arrays.stream(NotificationCommandType.values()).map(NotificationCommandType::name), builder);
 		}
 
 		private static final List<String> EXAMPLES = Arrays.stream(NotificationCommandType.values()).map(Enum::name).collect(Collectors.toList());

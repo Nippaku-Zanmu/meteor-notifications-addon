@@ -15,9 +15,10 @@ import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.utils.render.AlignmentX;
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import meteordevelopment.meteorclient.utils.render.color.SettingColor;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
+
 import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,7 +61,7 @@ public class NotificationsHudElement extends HudElement {
 				Field sliderMax = IntSetting.class.getDeclaredField("sliderMax");
 				sliderMax.setAccessible(true);
 				sliderMax.set(this.animationDuration, c);
-				if (MinecraftClient.getInstance().currentScreen instanceof HudElementScreen e) {
+				if (Minecraft.getInstance().screen instanceof HudElementScreen e) {
 					e.reload();
 				}
 			} catch (Exception e) {
@@ -90,7 +91,7 @@ public class NotificationsHudElement extends HudElement {
 				Field sliderMax = IntSetting.class.getDeclaredField("sliderMax");
 				sliderMax.setAccessible(true);
 				sliderMax.set(this.dummyNotificationsDisplayCount, c);
-				if (MinecraftClient.getInstance().currentScreen instanceof HudElementScreen e) {
+				if (Minecraft.getInstance().screen instanceof HudElementScreen e) {
 					e.reload();
 				}
 			} catch (Exception e) {

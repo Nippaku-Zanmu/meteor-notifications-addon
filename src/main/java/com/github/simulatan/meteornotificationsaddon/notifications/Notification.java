@@ -1,7 +1,8 @@
 package com.github.simulatan.meteornotificationsaddon.notifications;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+
 import java.awt.*;
 import java.util.Objects;
 
@@ -14,11 +15,11 @@ public class Notification {
 	}
 
 	private final int id = getNextId();
-	@Nonnull
+	@NonNull
 	private final String title;
 	@Nullable
 	private final String description;
-	@Nonnull
+	@NonNull
 	private final Color color;
 	/**
 	 * Protected to only allow accessing in {@link com.github.simulatan.meteornotificationsaddon.notifications.NotificationsManager}
@@ -30,31 +31,31 @@ public class Notification {
 	@Nullable
 	private final NotificationEvent event;
 
-	public Notification(@Nonnull String title) {
+	public Notification(@NonNull String title) {
 		this(title, (String) null);
 	}
 
-	public Notification(@Nonnull String title, @Nullable NotificationEvent event) {
+	public Notification(@NonNull String title, @Nullable NotificationEvent event) {
 		this(title, null, null, event);
 	}
 
-	public Notification(@Nonnull String title, @Nullable String description) {
+	public Notification(@NonNull String title, @Nullable String description) {
 		this(title, description, null);
 	}
 
-	public Notification(@Nonnull String title, @Nullable Color color) {
+	public Notification(@NonNull String title, @Nullable Color color) {
 		this(title, null, color);
 	}
 
-	public Notification(@Nonnull String title, @Nullable Color color, @Nullable NotificationEvent event) {
+	public Notification(@NonNull String title, @Nullable Color color, @Nullable NotificationEvent event) {
 		this(title, null, color, event);
 	}
 
-	public Notification(@Nonnull String title, @Nullable String description, @Nullable Color color) {
+	public Notification(@NonNull String title, @Nullable String description, @Nullable Color color) {
 		this(title, description, color, null);
 	}
 
-	public Notification(@Nonnull String title, @Nullable String description, @Nullable Color color, @Nullable NotificationEvent event) {
+	public Notification(@NonNull String title, @Nullable String description, @Nullable Color color, @Nullable NotificationEvent event) {
 		Objects.requireNonNull(title);
 		this.title = title;
 		this.description = description;
@@ -62,7 +63,7 @@ public class Notification {
 		this.event = event;
 	}
 
-	@Nonnull
+	@NonNull
 	public String getTitle() {
 		return title;
 	}
@@ -72,7 +73,7 @@ public class Notification {
 		return description;
 	}
 
-	@Nonnull
+	@NonNull
 	public Color getColor() {
 		return color;
 	}
