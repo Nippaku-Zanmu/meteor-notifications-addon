@@ -3,13 +3,10 @@ plugins {
 	id 'maven-publish'
 }
 
-
-
 base {
 	version = project.mod_version
 	group = project.maven_group
 }
-
 
 repositories {
 	maven {
@@ -30,7 +27,6 @@ dependencies {
 
 	// Meteor
 	implementation "meteordevelopment:meteor-client:${project.minecraft_version}-SNAPSHOT"
-
 }
 
 configurations.all {
@@ -41,10 +37,6 @@ configurations.all {
 }
 
 processResources {
-	def propertyMap = [
-		"version"   : project.version,
-		"mc_version": project.minecraft_version,
-	]
     inputs.property "version", project.version
 
     filesMatching("fabric.mod.json") {
@@ -57,8 +49,3 @@ tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
     it.options.release = 25
 }
-
-
-
-
-
